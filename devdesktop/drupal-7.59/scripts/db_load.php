@@ -7,23 +7,23 @@
 require_once DRUPAL_ROOT . '/' . variable_get('password_inc', 'includes/password.inc');
 
 $users = array(
-    array(
-		'name' => 'ejones1',
-		'email' => 'name1@domain',
-		'pass' => 'super'
-	),
+  array(
+    'name' => 'ejones1',
+	'email' => 'name1@domain',
+	'pass' => 'super'
+  ),
 		
-    array(
-		'name' => 'ejones2',
-		'email' => 'name2@domain',
-		'pass' => 'super'
-	),
+  array(
+	'name' => 'ejones2',
+	'email' => 'name2@domain',
+	'pass' => 'super'
+  ),
 	
-	array(
-		'name' => 'ejones3',
-		'email' => 'name3@domain',
-		'pass' => 'super'
-	)
+  array(
+	'name' => 'ejones3',
+	'email' => 'name3@domain',
+	'pass' => 'super'
+  )
 );    
 
 foreach ($users as $user) {
