@@ -6,6 +6,8 @@ The University of Prince Edward Island is gauging interest for a new summer cour
 # INIT
 After installing the code test locally, navigate to the modules and enable "Registration Form". 
 
+You should also enable the Sign Up module. This will open up the option for the block that will display registered users.
+
 Once successfully installed, open a drush terminal and run the following command: drush src scripts/db_load.php. This will load some test users into the database. 
 
 You can also list the users/students that registered for the course using the following command: drush src scripts/list_registered_users.php.
