@@ -27,9 +27,9 @@ $users = array(
 );    
 
 foreach ($users as $user) {
+  $account = new StdClass();
   $account->is_new = TRUE;
   $account->status = 1;
-  $account = new StdClass();
   $account->name = $user['name'];
   $account->pass = user_hash_password($user['pass']);
   $account->mail = $user['email'];
