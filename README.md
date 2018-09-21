@@ -11,5 +11,5 @@ Once successfully installed, open a drush terminal and run the following command
 You can also list the users/students that registered for the course using the following command: drush src scripts/list_registered_users.php.
 
 ## TODO
-* ~~When displaying registered users, tally the total users registered. ~~
+* ~~When displaying registered users, tally the total users registered~~
 * If a user chose not to register for the class, allow them to change their decision.
