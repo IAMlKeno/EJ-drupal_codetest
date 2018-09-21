@@ -8,6 +8,8 @@ After installing the code test locally, navigate to the modules and enable "Regi
 
 Once successfully installed, open a drush terminal and run the following command: drush src scripts/db_load.php. This will load some test users into the database. 
 
+You can also list the users/students that registered for the course using the following command: drush src scripts/list_registered_users.php.
+
 ## TODO
-* When displaying registered users, tally the total users registered.
+* ~~When displaying registered users, tally the total users registered. ~~
 * If a user chose not to register for the class, allow them to change their decision.
