@@ -1,0 +1,5 @@
+core = "7.x"
+
+description = "Form for registering for courses."
+
+name = "Registration Module"

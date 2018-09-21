@@ -1,0 +1,40 @@
+<?php
+
+function registration_form_schema() {
+  $schema = array();
+  
+  $schema['registration_form'] = array(
+    'description' => 'registrations.',
+    'fields' => array(
+      'id' => array(
+        'description' => 'The primary identifier for a course.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE
+      ),
+      'username' => array(
+        'description' => 'This is the name of the course.',
+        'type' => 'varchar',
+		'length' => 255,
+        'not null' => TRUE
+      ),
+	  'userid' => array(
+        'description' => 'This is the name of the course.',
+        'type' => 'int',
+        'not null' => TRUE
+      ),
+	  'signed_up' => array(
+        'description' => 'This is whether the user chose to sign up for the course',
+        'type' => 'int',
+		'size' => 'tiny',
+		'default' => 0,
+        'not null' => TRUE
+      ),
+    ),
+    'primary key' => array(
+      'id'
+    ),
+  );
+  
+  return $schema;
+}

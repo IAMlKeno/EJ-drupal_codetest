@@ -1,0 +1,92 @@
+<?php
+
+function registration_form_permission() {
+  return array(
+    'submit registration_form' => array(
+      'title' => t('Submit form'),
+      'description' => t('Registration for courses'),
+    ),
+  );
+}
+
+function registration_form_menu() {
+  $items = array();
+  
+  $items['registration-form'] = array(
+    'title' => 'Registration',
+    'access arguments' => array(
+      'submit registration_form'
+    ),
+	'access callback' => TRUE,
+	'page callback' => 'drupal_get_form',
+	'page arguments' => array('registration_form')
+  );
+  
+  return $items;
+}
+
+function registration_form($form, &$form_state) {
+  global $user;
+  
+  $form['course_options'] = array(
+  '#type' => 'value',
+  '#value' => array('' => t('--- SELECT ---'),
+				    '1' => t('Yes!'),
+                    '0' => t('No, I\'m not cool enough'),
+					),
+  );
+  
+  $form['register'] = array(
+    '#title' => t('Register for course'),
+    '#type' => 'select',
+    '#description' => 'Would you like to register for "Theory of Computing 2: Electric Boogaloo"?',
+    '#options' => $form['course_options']['#value'],
+  );
+  
+  $form['userid'] = array(
+    '#type' => 'hidden',
+	'#value' => $user->uid
+  );
+  
+  $form['username'] = array(
+    '#type' => 'hidden',
+	'#value' => $user->name
+  );  
+  
+  $form['submit'] = array(
+    '#type' => 'submit',
+	'#value' => t('Register course'),
+	'#submit' => array('registration_form_submit')
+  );
+  
+  return $form;
+}
+
+function registration_form_validate($form, &$form_state) {
+  return TRUE;
+}
+
+function registration_form_submit($form, &$form_state) {
+  global $user;
+  
+  // check if the user has registered for the course
+  $result = db_query(
+    "SELECT userid, username FROM registration_form 
+	  WHERE userid = :userid", array(':userid' => $form_state['values']['userid'])
+	);
+
+  if ($result->rowCount() <= 0) {
+    $id = db_insert('registration_form')
+      ->fields(array(
+        'signed_up' => $form_state['values']['register'],
+	    'userid' => $form_state['values']['userid'],
+	    'username' => $form_state['values']['username'],
+      ))
+    ->execute();
+  
+    drupal_set_message(t('You have been registered for the course!'));
+  }
+  else {
+    drupal_set_message(t('You have already registered for the course!'));
+  }
+}
