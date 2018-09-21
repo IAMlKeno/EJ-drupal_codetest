@@ -1,0 +1,4 @@
+name = Sign Up
+description = Register for boogalo class
+core = 7.x
+version = "7.59"

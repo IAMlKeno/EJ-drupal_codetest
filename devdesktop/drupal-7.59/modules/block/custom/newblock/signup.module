@@ -1,0 +1,49 @@
+<?php
+
+function signup_block_info() {    
+  $blocks['sign_up'] = array(
+    // info: The name of the block.
+    'info' => t('Sign up'),
+  );
+
+  return $blocks;
+}
+
+function signup_block_view($delta = '') {
+  // The $delta parameter tells us which block is being requested.
+  switch ($delta) {
+    case 'sign_up':
+      // Create your block content here
+      $block['subject'] = t('Sign up');
+      $block['content'] = '<table id="available-classes" class="courses">
+                             <tr>
+							   <th>Students</th>
+							</tr>';
+
+    $result = db_query("SELECT username FROM registration_form WHERE signed_up = 1");
+    $counter = 0;
+    $users = '';
+
+    foreach ($result as $record) {
+      $block['content'] .= "<tr><td>". $record->username ."</td></tr>";
+      $counter++;
+    }
+
+    $block['content'] .= '</table>
+						 <strong>Total registered: '. $counter .'</strong><br />';
+
+    global $user;
+
+    $results = db_query(
+      "SELECT username FROM registration_form 
+        WHERE userid = :userid", array(':userid' => $user->uid));
+
+    if ($results->rowCount() < 1 && $user->uid >= 1) {
+      $block['content'] .= "<a href='/registration-form'>Click here</a> to register now!";
+    }
+
+      break;
+   }
+
+  return $block;
+}
