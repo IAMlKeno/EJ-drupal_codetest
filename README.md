@@ -15,3 +15,4 @@ You can also list the users/students that registered for the course using the fo
 ## TODO
 * ~~When displaying registered users, tally the total users registered~~
 * If a user chose not to register for the class, allow them to change their decision.
+* Is there a way to programmatically restrict where a block is shown?
